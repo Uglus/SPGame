@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SPGame</string>
+    <string name="category_name">CategoryTest</string>
+    <string name="start_btn">Start</string>
+    <string name="imageCategoryDesc">Image Of Category</string>
+    <string name="sliderCategory1">Category1</string>
+    <string name="sliderCategory2">Category2</string>
+    <string name="sliderCategory3">Category3</string>
+    <string name="sliderCategory4">Category4</string>
+    <string name="sliderCategory5">Category5</string>
+    <string name="sliderCategory6">Category6</string>
+</resources>
