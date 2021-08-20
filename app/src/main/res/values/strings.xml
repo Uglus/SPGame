@@ -9,15 +9,4 @@
     <string name="sliderCategory4">Category4</string>
     <string name="sliderCategory5">Category5</string>
     <string name="sliderCategory6">Category6</string>
-    <string name="ChatTest">Player1: Text1 \n Player2: Text2 \n Player3: Text3</string>
-    <string name="lobby_player1">Player1</string>
-    <string name="lobby_player2">Player2</string>
-    <string name="lobby_player3">Player3</string>
-    <string name="lobby_player4">Player4</string>
-    <string name="lobby_player5">Player5</string>
-    <string name="lobby_player6">Player6</string>
-    <string name="lobby_player7">Player7</string>
-    <string name="lobby_player8">Player8</string>
-    <string name="add_member">Add member to your lobby</string>
-    <string name="imgUser">Your avatar</string>
 </resources>

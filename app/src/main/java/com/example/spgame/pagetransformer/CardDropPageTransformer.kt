@@ -6,6 +6,7 @@ import com.example.spgame.R
 
 class CardDropPageTransformer : ViewPager2.PageTransformer {
     private var offset = 0f
+    private val dropOffset = 24
     override fun transformPage(page: View, position: Float) {
         if (offset == 0f)
             offset = page.context.resources.getDimension(R.dimen.drop_offset)
