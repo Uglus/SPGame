@@ -1,134 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imgUser"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/default_user"
-        app:layout_constraintStart_toEndOf="@id/guidelineVertical2"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/menuHeader"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/imgUser" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/viewPagerCategoryQuizSlider"
+        android:orientation="horizontal" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpCategoryQuizSlider"
-        android:layout_width="0dp"
+        android:id="@+id/viewPagerCategoryQuizSlider"
         android:layout_height="0dp"
-        android:paddingStart="200dp"
-        android:paddingEnd="200dp"
-        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal2"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toBottomOf="@id/menuHeader"
+        app:layout_constraintBottom_toTopOf="@id/menuFooter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal1" />
+        android:paddingStart="200dp"
+        android:paddingEnd="200dp"
+        />
 
     <LinearLayout
-        android:id="@+id/lobbyPlayers"
+        android:id="@+id/menuFooter"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical2"
-        app:layout_constraintStart_toEndOf="@id/guidelineVertical1"
-        app:layout_constraintTop_toBottomOf="@+id/vpCategoryQuizSlider"
-        android:gravity="center"
-        android:orientation="horizontal"
-        >
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer1"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player1"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer2"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player2"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer3"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player3"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer4"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player4"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer5"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player5"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer6"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player6"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer7"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player7"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer8"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player8"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/btnAddPlayer"
-            style="@style/fewPlayers"
-            android:src="@drawable/plus"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/add_member"
-            />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/chatLobby"
-        android:text="@string/ChatTest"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical1"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vpCategoryQuizSlider" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVertical1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVertical2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintTop_toBottomOf="@id/viewPagerCategoryQuizSlider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
