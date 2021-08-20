@@ -1,30 +1,35 @@
 package com.example.spgame
 
-import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import kotlin.math.abs
+import com.example.spgame.pagetransformer.CardAlphaPageTransformer
+import com.example.spgame.pagetransformer.CardDropPageTransformer
+import com.example.spgame.pagetransformer.CardMarginPageTransformer
+
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var viewPager2:ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val categoriesList : MutableList<Category> = initCategoryList()
+        var viewPager2 = initViewPager2(findViewById(R.id.vpCategoryQuizSlider),categoriesList)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        //Щоб прибрати statusBar зверху
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
+    }
 
-        val categoriesList : MutableList<Category> = mutableListOf(
+    private fun initCategoryList() : MutableList<Category> {
+        return mutableListOf(
             Category(name = R.string.sliderCategory5, image = R.drawable.image5),
             Category(name = R.string.sliderCategory6, image = R.drawable.image6),
 
@@ -38,64 +43,38 @@ class MainActivity : AppCompatActivity() {
             Category(name = R.string.sliderCategory1, image = R.drawable.image1),
             Category(name = R.string.sliderCategory2, image = R.drawable.image2)
         )
+    }
 
-        /*
-        viewPager2 = findViewById(R.id.viewPagerCategoryQuizSlider)
-
-        viewPager2.apply {
-            adapter = CategoryAdapter(categories = categoriesList,viewPager2 = this)
-            clipToPadding = false
-            clipChildren = false
-            offscreenPageLimit = 3
-            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-            val transformer : CompositePageTransformer = CompositePageTransformer()
-            transformer.apply {
-                addTransformer(MarginPageTransformer(40))
-                addTransformer { page: View, position: Float ->
-                    val r: Float = 1 - abs(position)
-                    page.scaleY = 0.85f + r * 0.15f
-                }
-            }
-            setPageTransformer(transformer)
-        }
-        */
-        viewPager2 = findViewById(R.id.viewPagerCategoryQuizSlider)
+    private fun initViewPager2 (viewPager2: ViewPager2, data:MutableList<Category>): ViewPager2{
         with(viewPager2) {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     if (state == ViewPager2.SCROLL_STATE_IDLE || state == ViewPager2.SCROLL_STATE_DRAGGING) {
                         if (currentItem == 0)
-                            setCurrentItem(categoriesList.size - 2, false)
-                        else if (currentItem == categoriesList.size -1)
+                            setCurrentItem(data.size - 2, false)
+                        else if (currentItem == data.size -1)
                             setCurrentItem(1, false)
                     }
                 }
             })
-            adapter = CategoryAdapter(categoriesList)
+            adapter = CategoryAdapter(data = data)
             setCurrentItem(1, false)
 
             clipToPadding = false
             clipChildren = false
             offscreenPageLimit = 3
 
-            val transformer : CompositePageTransformer = CompositePageTransformer()
+            val transformer = CompositePageTransformer()
             transformer.apply {
-                addTransformer(MarginPageTransformer(40))
-                addTransformer { page: View, position: Float ->
-                    val r: Float = 1 - abs(position)
-                    page.scaleY = 0.85f + r * 0.15f
-                    page.alpha = 1-abs(0.5f*position) // треба зробити якось розмиття вюшок ззаді
-                }
+                addTransformer(CardAlphaPageTransformer())
+                addTransformer(CardDropPageTransformer())
+                addTransformer(CardMarginPageTransformer())
             }
+
             setPageTransformer(transformer)
         }
+        return viewPager2
     }
 
-    override fun onResume() {
-        super.onResume()
-        //Щоб прибрати statusBar зверху
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
-    }
 }

@@ -5,4 +5,35 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@color/blue</item>
     </style>
+
+    <style name="playersInMenu">
+        <item name="android:src">@drawable/default_user</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+
+    <style name="imgShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="viewNotVisible">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="manyPlayers" parent="playersInMenu">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+    <style name="normalPlayers" parent="playersInMenu">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+    <style name="fewPlayers" parent="playersInMenu">
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">55dp</item>
+    </style>
 </resources>
