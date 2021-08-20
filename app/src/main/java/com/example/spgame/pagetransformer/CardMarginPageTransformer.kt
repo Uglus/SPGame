@@ -10,7 +10,7 @@ class CardMarginPageTransformer : ViewPager2.PageTransformer {
     override fun transformPage(page: View, position: Float) {
         if (offset == 0f) {
             val cardWidth = page.findViewById<View>(R.id.slideCategoryImage).width
-            offset = -page.width / 2f + (cardWidth * 0.33f)
+            offset = -page.width / 4f + (cardWidth * 0.33f)
         }
 
         page.translationX = offset * position
