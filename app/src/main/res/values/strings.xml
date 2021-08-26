@@ -20,4 +20,8 @@
     <string name="lobby_player8">Player8</string>
     <string name="add_member">Add member to your lobby</string>
     <string name="imgUser">Your avatar</string>
+    <string name="btnLocalisation">Українська</string>
+    <string name="tvLocalisation">Локалізація</string>
+    <string name="menu_dialog_create_game">Create Game</string>
+    <string name="menu_dialog_find_game">Find Game</string>
 </resources>

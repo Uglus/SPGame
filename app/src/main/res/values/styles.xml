@@ -36,4 +36,23 @@
         <item name="android:layout_width">55dp</item>
         <item name="android:layout_height">55dp</item>
     </style>
+
+    <style name="SettingsDialogAnimationTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/SettingsAnimation.Window</item>
+    </style>
+
+    <style name="SettingsAnimation.Window" parent="android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="MenuStartDialogAnimationTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/MenuStartDialogAnimation.Window</item>
+    </style>
+
+    <style name="MenuStartDialogAnimation.Window" parent="android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 </resources>
