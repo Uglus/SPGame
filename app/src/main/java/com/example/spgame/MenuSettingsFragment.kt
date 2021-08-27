@@ -1,6 +1,7 @@
 package com.example.spgame
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -40,6 +41,5 @@ class MenuSettingsFragment : DialogFragment() {
             setLayout(width,height)
             setGravity(Gravity.TOP)
         }
-
     }
 }

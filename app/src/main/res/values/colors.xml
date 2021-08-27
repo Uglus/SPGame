@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#48A9ED</color>
+    <color name="tvGame">#6EC1EA</color>
+    <color name="btnStartBlue">#005AE1</color>
 </resources>

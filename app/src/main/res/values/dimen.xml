@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="drop_offset">35dp</dimen>
+    <dimen name="fewPlayersHeight">40dp</dimen> <!-- 55dp-15dp -->
+    <dimen name="normalPlayersHeight">30dp</dimen> <!-- 45dp-15dp -->
+    <dimen name="manyPlayersHeight">25dp</dimen> <!-- 40dp-15dp -->
 </resources>

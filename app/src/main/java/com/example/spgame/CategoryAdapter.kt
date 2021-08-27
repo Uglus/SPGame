@@ -1,6 +1,9 @@
 package com.example.spgame
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +12,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import java.util.*
+import java.util.zip.Inflater
 
 
 public class CategoryAdapter(var data: MutableList<Category>)
@@ -37,11 +43,11 @@ public class CategoryAdapter(var data: MutableList<Category>)
 
         init {
             btnStart.setOnClickListener {
-                val builder = AlertDialog
-                    .Builder(view.context,R.style.MenuStartDialogAnimationTheme).apply {
-                    setView(R.layout.dialog_menu_start)
-                }
-                builder.show()
+                Log.d("CategoryAdapter","btnStart clicked")
+                val dialog : DialogFragment = MenuStartFragment()
+                val activity: AppCompatActivity = itemView.context as AppCompatActivity
+                dialog.show(activity.supportFragmentManager,null)
+
             }
         }
 
@@ -49,13 +55,6 @@ public class CategoryAdapter(var data: MutableList<Category>)
             nameTextView.text = itemView.resources.getText(category.name)
             imageImageView.setImageResource(category.image)
         }
-
-
-
-
-
-
-
     }
 }
 

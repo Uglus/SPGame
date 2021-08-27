@@ -37,6 +37,14 @@
         <item name="android:layout_height">55dp</item>
     </style>
 
+    <style name="GamePlayerView" >
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="image">@drawable/default_user</item>
+        <item name="name">@string/game_player_name</item>
+        <item name="score">0</item>
+    </style>
+
     <style name="SettingsDialogAnimationTheme" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:windowAnimationStyle">@style/SettingsAnimation.Window</item>
     </style>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/flDisplay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/glHorizontalTop"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintBottom_toBottomOf="@id/glHorizontalEnd"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivMaster"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/default_user"
+            app:shapeAppearance="@style/imgShape"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/flDisplay"
+            app:layout_constraintTop_toTopOf="@id/glHorizontalTop"
+            app:layout_constraintBottom_toTopOf="@id/tvStatus"
+            />
+
+        <TextView
+            android:id="@+id/tvMasterName"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:background="@drawable/rounded_corner_image"
+            android:alpha="0.5"
+            android:text="@string/game_player_name"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="99dp"
+            app:layout_constraintTop_toTopOf="@id/glHorizontalTop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/glVerticalStart"
+            />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corner_score"
+        app:layout_constraintTop_toBottomOf="@id/ivMaster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/glVerticalStart"
+        app:layout_constraintBottom_toBottomOf="@id/glHorizontalEnd"/>
+
+    <LinearLayout
+        android:id="@+id/llPlayers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/flDisplay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player1"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player2"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player3"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player4"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player5"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player6"
+            style="@style/GamePlayerView"
+            />
+        <com.example.spgame.GamePlayerView
+            android:id="@+id/player7"
+            style="@style/GamePlayerView"
+            />
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalEnd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHorizontalTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHorizontalEnd"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

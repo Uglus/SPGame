@@ -24,4 +24,6 @@
     <string name="tvLocalisation">Локалізація</string>
     <string name="menu_dialog_create_game">Create Game</string>
     <string name="menu_dialog_find_game">Find Game</string>
+    <string name="game_player_score">0</string>
+    <string name="game_player_name">Player</string>
 </resources>
