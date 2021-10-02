@@ -1,2 +1,5 @@
 rootProject.name = "SPGame"
 include ':app'
+include ':dataOld'
+include ':domain'
+include ':data'

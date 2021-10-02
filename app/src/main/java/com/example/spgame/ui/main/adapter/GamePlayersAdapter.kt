@@ -1,11 +1,14 @@
-package com.example.spgame
+package com.example.spgame.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.spgame.R
+import com.example.spgame.model.Player
 import com.example.spgame.ui.main.view.UserView
+import com.squareup.picasso.Picasso
 
 class GamePlayersAdapter(var players: MutableList<Player>)
     :RecyclerView.Adapter<GamePlayersAdapter.PlayerViewHolder>(){
@@ -29,12 +32,12 @@ class GamePlayersAdapter(var players: MutableList<Player>)
         private val score : TextView = view.findViewById(R.id.tvPlayerScore)
         private val user : UserView = view.findViewById(R.id.viewUser)
 
-        fun bind(player:Player){
+        fun bind(player: Player){
             score.text = player.score.toString()
             user.tvUserName.text = player.user.name
-            user.imgUser.setImageResource(player.user.img)
+            //user.imgUser.setImageURI(user.imgUser)
+            Picasso.get().load(player.user.img).into(user.imgUser)
         }
-
 
     }
 }

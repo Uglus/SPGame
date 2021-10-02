@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<data class="CategoryBinding">
+    <variable
+        name="viewModel"
+        type="com.example.spgame.presentation.viewmodel.CategoryViewModel" />
+</data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/categoryQuizSlide"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_corner_category_slide">
 
     <ImageView
         android:id="@+id/slideCategoryImage"
@@ -15,10 +24,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/imageCategoryDesc"/>
-
-
-
+        android:contentDescription="@string/imageCategoryDesc"
+        android:src="@{viewModel.imgRes}"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/slideCategoryFooter"
@@ -28,7 +35,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/glHorizontalEnd"
-        android:background="@color/purple_200"
+        android:background="@color/white_blue"
         android:alpha="0.9">
 
         <TextView
@@ -37,7 +44,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:textSize="30sp"
-            android:text="@string/category_name"
+            android:text="@{viewModel.nameRes}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -45,14 +52,16 @@
 
         <Button
             android:id="@+id/slideCategoryStartBtn"
-            android:layout_width="200dp"
-            android:layout_height="80dp"
+            android:layout_width="180dp"
+            android:layout_height="0dp"
             android:layout_marginEnd="10dp"
+            android:layout_margin="10dp"
             android:text="@string/start_btn"
-            android:background="@color/btnStartBlue"
+            android:background="@drawable/rounded_corner_btn_start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{v->viewModel.showDialog(context)}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -60,6 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.6"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,4 +1,7 @@
 package com.example.spgame.domain.usecase
 
-class DeleteUserUseCase {
+class DeleteUserUseCase : UseCase {
+    override suspend fun invoke() {
+        TODO("Not yet implemented")
+    }
 }

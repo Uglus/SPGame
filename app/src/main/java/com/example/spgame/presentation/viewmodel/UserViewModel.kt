@@ -1,6 +1,6 @@
-package com.example.spgame.ui.main.viewmodel
+package com.example.spgame.presentation.viewmodel
 
-import com.example.spgame.data.model.User
+import com.example.spgame.model.User
 
 class UserViewModel {
     var user: User? = null

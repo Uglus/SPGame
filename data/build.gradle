@@ -10,4 +10,10 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation project(path: ':domain')
+
+    //Faker for init data
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
 }

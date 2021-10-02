@@ -1,7 +1,7 @@
-package com.example.data.api
+package com.example.spgame.data.api
 
-import com.example.data.model.Category
-import com.example.data.model.User
+import com.example.spgame.data.model.Category
+import com.example.spgame.data.model.User
 
 interface ApiService {
 

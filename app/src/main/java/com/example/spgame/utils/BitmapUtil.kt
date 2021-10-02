@@ -1,9 +1,10 @@
-package com.example.spgame.util
+package com.example.spgame.utils
 import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import java.io.ByteArrayOutputStream
 
 object BitmapUtil {
     fun createMaskedDrawable(
@@ -28,7 +29,7 @@ object BitmapUtil {
         return BitmapDrawable(resources, overlay)
     }
 
-    private fun createBitmap(resources: Resources, resourceId: Int): Bitmap? {
+    fun createBitmap(resources: Resources, resourceId: Int): Bitmap? {
         val drawable = ResourcesCompat.getDrawable(resources, resourceId, null)
         return drawable?.toBitmap()
     }
@@ -41,4 +42,12 @@ object BitmapUtil {
         val drawable = ResourcesCompat.getDrawable(resources, resourceId, null)
         return drawable?.toBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
     }
+
+    fun convertImgToByteArray(pathToFile:String): ByteArray {
+        val bitMap : Bitmap = BitmapFactory.decodeFile(pathToFile)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitMap.compress(Bitmap.CompressFormat.PNG, 100,byteArrayOutputStream)
+        return byteArrayOutputStream.toByteArray()
+    }
+
 }

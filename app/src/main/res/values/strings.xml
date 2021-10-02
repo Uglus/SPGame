@@ -26,4 +26,8 @@
     <string name="menu_dialog_find_game">Find Game</string>
     <string name="game_player_score">0</string>
     <string name="game_player_name">Player</string>
+    <string name="game_master_name">Master</string>
+    <string name="popup_remove_user">Remove User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

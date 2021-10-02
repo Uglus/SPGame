@@ -1,4 +1,4 @@
-package com.example.spgame.domain.model
+package com.example.spgame.model
 
 data class User(
     val id: Int,

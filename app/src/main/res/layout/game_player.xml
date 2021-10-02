@@ -5,28 +5,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgPlayer"
+    <com.example.spgame.ui.main.view.UserView
+        android:id="@+id/viewUser"
         style="@style/fewPlayers"
+        app:imgUser="@drawable/default_user"
+        app:nameUser="@string/game_player_name"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/imgShape"
-        />
-
-    <TextView
-        android:id="@+id/tvPlayerName"
-        style="@style/fewPlayers"
-        android:layout_height="15dp"
-        android:layout_marginTop="@dimen/fewPlayersHeight"
-        android:background="@drawable/rounded_corner_image"
-        android:alpha="0.5"
-        android:text="@string/game_player_name"
-        android:gravity="center"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/tvPlayerScore"
@@ -37,7 +22,7 @@
         android:gravity="center"
         android:textColor="@color/white"
 
-        app:layout_constraintTop_toBottomOf="@id/imgPlayer"
+        app:layout_constraintTop_toBottomOf="@id/viewUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

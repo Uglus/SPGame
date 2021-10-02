@@ -1,25 +1,39 @@
-package com.example.spgame
+package com.example.spgame.ui.main.view
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.DataBindingUtil
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.spgame.data.model.Category
+import com.example.spgame.data.api.ApiHelper
+import com.example.spgame.data.api.ApiServiceImpl
+import com.example.spgame.ui.main.adapter.CategoryAdapter
 import com.example.spgame.databinding.ActivityMainBinding
-import com.example.spgame.data.model.pagetransformer.CardAlphaPageTransformer
-import com.example.spgame.data.model.pagetransformer.CardDropPageTransformer
-import com.example.spgame.data.model.pagetransformer.CardMarginPageTransformer
+import com.example.spgame.model.User
+import com.example.spgame.utils.pagetransformer.CardAlphaPageTransformer
+import com.example.spgame.utils.pagetransformer.CardDropPageTransformer
+import com.example.spgame.utils.pagetransformer.CardMarginPageTransformer
+import com.example.spgame.ui.base.ViewModelFactory
+import com.example.spgame.ui.main.adapter.MenuUsersAdapter
+import com.example.spgame.presentation.viewmodel.MainActivityViewModel
+import com.example.spgame.utils.UserActionListener
 import com.google.android.flexbox.*
+
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var userAdapter: MenuUsersAdapter
+    private lateinit var categoryAdapter : CategoryAdapter
+
+    private val viewModel : MainActivityViewModel by viewModels{ViewModelFactory(ApiHelper(ApiServiceImpl()))}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         val layout  = FlexboxLayoutManager(this@MainActivity).apply{
             justifyContent = JustifyContent.CENTER
@@ -28,23 +42,46 @@ class MainActivity : AppCompatActivity() {
             flexWrap = FlexWrap.WRAP
 
         }
+        binding  = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val binding : ActivityMainBinding =
-            DataBindingUtil.setContentView(this,R.layout.activity_main)
+        userAdapter = MenuUsersAdapter(object: UserActionListener{
+            override fun onUserRemove(user: User) {
+                viewModel.deleteUser(user)
+            }
+        })
+
+        categoryAdapter = CategoryAdapter()
+
         binding.rvUsers.apply {
-            adapter = MenuUsersAdapter(users = initUsersList())
-            layoutManager = layout//LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
+            adapter = userAdapter
+            layoutManager = layout
             isNestedScrollingEnabled = false
         }
-        val categoriesList : MutableList<Category> = initCategoryList()
-        var viewPager2 = initViewPager2(viewPager2 = binding.vpCategoryQuizSlider,data = categoriesList)
+
+        //viewModel.users.observe(viewLifecycleOwner,) для фрагментів
+        viewModel.apply {
+            users.observe(this@MainActivity) {
+                userAdapter.usersList = it
+            }
+            categories.observe(this@MainActivity) {
+                categoryAdapter.categoriesList = it
+            }
+        }
+
+
+        //val binding : ActivityMainBinding =
+        //    DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        //val categoriesList : MutableList<Category> = initCategoryList()
+        //initViewPager2(binding.vpCategoryQuizSlider)
+        initViewPager2()
 
         binding.imgUser.setOnClickListener {
             val dialog = MenuSettingsFragment()
             val manager = supportFragmentManager
             dialog.show(manager,"TAG_SETTINGS")
         }
-
     }
 
     override fun onResume() {
@@ -54,40 +91,41 @@ class MainActivity : AppCompatActivity() {
         actionBar?.hide()
     }
 
-
-    private fun initCategoryList() : MutableList<Category> {
-        return mutableListOf(
-            Category(name = R.string.sliderCategory5, image = R.drawable.image5),
-            Category(name = R.string.sliderCategory6, image = R.drawable.image6),
-
-            Category(name = R.string.sliderCategory1, image = R.drawable.image1),
-            Category(name = R.string.sliderCategory2, image = R.drawable.image2),
-            Category(name = R.string.sliderCategory3, image = R.drawable.image3),
-            Category(name = R.string.sliderCategory4, image = R.drawable.image4),
-            Category(name = R.string.sliderCategory5, image = R.drawable.image5),
-            Category(name = R.string.sliderCategory6, image = R.drawable.image6),
-
-            Category(name = R.string.sliderCategory1, image = R.drawable.image1),
-            Category(name = R.string.sliderCategory2, image = R.drawable.image2)
-        )
-    }
-
-    private fun initUsersList() : MutableList<User>{
-        return mutableListOf(
-            User(name = "User1",img = R.drawable.default_user),
-            User(name = "User2",img = R.drawable.default_user),
-            User(name = "User3",img = R.drawable.default_user),
-            User(name = "User4",img = R.drawable.default_user)/*,
-            User(name = "User5",img = R.drawable.default_user),
-            User(name = "User6",img = R.drawable.default_user),
-            User(name = "User7",img = R.drawable.default_user)*/
-
-        )
-    }
-
-    private fun initViewPager2 (viewPager2: ViewPager2, data:MutableList<Category>): ViewPager2{
-        with(viewPager2) {
+    private fun initViewPager2 (){
+        with(binding.vpCategoryQuizSlider/*viewPager2*/) {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                    if (state == ViewPager2.SCROLL_STATE_IDLE || state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                        if (currentItem == 1)
+                            setCurrentItem(categoryAdapter.itemCount - 3, false)
+                        else if (currentItem == categoryAdapter.itemCount - 2)
+                            setCurrentItem(2, false)
+                    }
+                }
+            })
+
+            adapter = categoryAdapter
+            setCurrentItem(1, false)
+
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 3
+
+            val transformer = CompositePageTransformer()
+            transformer.apply {
+                addTransformer(CardAlphaPageTransformer())
+                addTransformer(CardDropPageTransformer())
+                addTransformer(CardMarginPageTransformer())
+            }
+
+            setPageTransformer(transformer)
+        }
+    }
+
+    /*private fun initViewPager2 (viewPager2: ViewPager2): ViewPager2{
+        with(viewPager2) {
+            *//*registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     if (state == ViewPager2.SCROLL_STATE_IDLE || state == ViewPager2.SCROLL_STATE_DRAGGING) {
@@ -97,8 +135,20 @@ class MainActivity : AppCompatActivity() {
                             setCurrentItem(2, false)
                     }
                 }
+            })*//*
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                    if (state == ViewPager2.SCROLL_STATE_IDLE || state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                        if (currentItem == 1)
+                            setCurrentItem(categoryAdapter.itemCount - 3, false)
+                        else if (currentItem == categoryAdapter.itemCount - 2)
+                            setCurrentItem(2, false)
+                    }
+                }
             })
-            adapter = CategoryAdapter(data = data)
+
+            adapter = categoryAdapter
             setCurrentItem(1, false)
 
             clipToPadding = false
@@ -115,6 +165,6 @@ class MainActivity : AppCompatActivity() {
             setPageTransformer(transformer)
         }
         return viewPager2
-    }
+    }*/
 
 }

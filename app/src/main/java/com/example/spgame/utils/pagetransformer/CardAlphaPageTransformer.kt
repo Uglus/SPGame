@@ -1,4 +1,4 @@
-package com.example.spgame.data.model.pagetransformer
+package com.example.spgame.utils.pagetransformer
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

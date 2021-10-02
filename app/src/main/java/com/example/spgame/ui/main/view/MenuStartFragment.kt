@@ -1,14 +1,14 @@
-package com.example.spgame
+package com.example.spgame.ui.main.view
 
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.DialogFragment
+import com.example.spgame.R
 import java.lang.IllegalStateException
 
 class MenuStartFragment : DialogFragment() {
@@ -24,11 +24,11 @@ class MenuStartFragment : DialogFragment() {
             val btnCreate : Button = view.findViewById(R.id.btnCreateGame)
             btnCreate.setOnClickListener {
                 Log.d(TAG(), "btnCreate clicked")
-                val intent : Intent = Intent(context,GameActivity::class.java)
+                val intent : Intent = Intent(context, GameActivity::class.java)
                 context?.startActivity(intent)
             }
 
-            val builder = AlertDialog.Builder(it,R.style.MenuStartDialogAnimationTheme).apply {
+            val builder = AlertDialog.Builder(it, R.style.MenuStartDialogAnimationTheme).apply {
                 setView(view)
             }
 

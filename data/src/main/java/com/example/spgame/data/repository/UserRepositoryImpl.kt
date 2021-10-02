@@ -1,12 +1,13 @@
-package com.example.data.repository
+package com.example.spgame.data.repository
 
-import com.example.data.api.ApiHelper
-import com.example.data.model.User
-import com.example.spgame.domain.`interface`.UserRepository
+import com.example.spgame.data.api.ApiHelper
+import com.example.spgame.domain.model.User
+//import com.example.spgame.data.model.User
+import com.example.spgame.domain.repository.UserRepository
 
 typealias UsersListener = (users: List<User>) -> Unit
 
-class UserRepositoryImpl (private val apiHelper: ApiHelper) : UserRepository{
+class UserRepositoryImpl (private val apiHelper: ApiHelper) : UserRepository {
 
     private var users : MutableList<User> = mutableListOf()
     private val listeners = mutableListOf<UsersListener>()// Всі лісенери, які прослуховють зміни
@@ -29,13 +30,13 @@ class UserRepositoryImpl (private val apiHelper: ApiHelper) : UserRepository{
         notifyChanges()
     }
 
-    override fun addListener(listener: UsersListener){
+/*    override fun addListener(listener: UsersListener){
         listeners.add(listener)
         listener.invoke(users)
     }
     override fun removeListener(listener: UsersListener){
         listeners.remove(listener)
-    }
+    }*/
 
     //Щоб не повторювати одну й ту саму логіку повідомлення лісенерів
     private fun notifyChanges(){

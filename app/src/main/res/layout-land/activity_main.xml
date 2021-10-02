@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="mainVM"
+            type="com.example.spgame.presentation.viewmodel.MainActivityViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,6 +15,7 @@
         android:id="@+id/imgUser"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/default_user"
         app:layout_constraintStart_toEndOf="@id/guidelineVertical2"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,74 +32,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal1" />
 
-    <LinearLayout
-        android:id="@+id/lobbyPlayers"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUsers"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical2"
+        app:layout_constraintTop_toBottomOf="@id/vpCategoryQuizSlider"
         app:layout_constraintStart_toEndOf="@id/guidelineVertical1"
-        app:layout_constraintTop_toBottomOf="@+id/vpCategoryQuizSlider"
-        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical2"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal"
-        >
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer1"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player1"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer2"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player2"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer3"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player3"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer4"
-            style="@style/fewPlayers"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player4"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer5"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player5"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer6"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player6"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer7"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player7"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgPlayer8"
-            style="@style/viewNotVisible"
-            app:shapeAppearanceOverlay="@style/imgShape"
-            android:contentDescription="@string/lobby_player8"
-            />
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/btnAddPlayer"
-            style="@style/fewPlayers"
-            android:src="@drawable/plus"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/add_member"
-            />
-    </LinearLayout>
+        android:foregroundGravity="center" />
 
     <TextView
         android:id="@+id/chatLobby"
@@ -132,3 +83,4 @@
         app:layout_constraintGuide_percent="0.65" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

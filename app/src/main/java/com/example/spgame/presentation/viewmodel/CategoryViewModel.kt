@@ -1,11 +1,10 @@
-package com.example.spgame.ui.main.viewmodel
+package com.example.spgame.presentation.viewmodel
 
 import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModel
-import com.example.spgame.data.model.Category
+import com.example.spgame.model.Category
 import com.example.spgame.ui.main.view.MenuStartFragment
 
 class CategoryViewModel  {
@@ -14,10 +13,10 @@ class CategoryViewModel  {
         field = category
     }
 
-    val nameRes : Int?
+    val nameRes : String?
     get() = category?.name
 
-    val imgRes : Int?
+    val imgRes : String?
     get() = category?.image
 
     fun showDialog(context: Context){

@@ -1,4 +1,4 @@
-package com.example.spgame.domain.`interface`
+package com.example.spgame.domain.repository
 
 import com.example.spgame.domain.model.User
 

@@ -1,6 +1,3 @@
-package com.example.data.model
+package com.example.spgame.data.model
 
-import androidx.annotation.StringRes
-
-data class Category (@StringRes val name: Int, val image: Int) {
-}
+data class Category (val id:Int, val name: String, val image: String)

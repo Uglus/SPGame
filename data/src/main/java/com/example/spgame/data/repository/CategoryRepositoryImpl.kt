@@ -1,9 +1,8 @@
-package com.example.data.repository
+package com.example.spgame.data.repository
 
-import android.util.Log
-import com.example.data.api.ApiHelper
-import com.example.data.model.Category
-import com.example.spgame.domain.`interface`.CategoryRepository
+import com.example.spgame.data.api.ApiHelper
+import com.example.spgame.domain.model.Category
+import com.example.spgame.domain.repository.CategoryRepository
 
 typealias CategoryListener = (categories: List<Category>) -> Unit
 
@@ -15,18 +14,17 @@ class CategoryRepositoryImpl (private val apiHelper: ApiHelper) : CategoryReposi
 
     init{
         categories = apiHelper.getCategories()  as MutableList<Category>
-        Log.d(TAG, "Initialized. Count of received categories: ${categories.size}")
     }
 
     override fun getCategories() = categories
 
-    override fun addListener(listener: CategoryListener){
+/*    override fun addListener(listener: CategoryListener){
         listeners.add(listener)
         listener.invoke(categories)
     }
     override fun removeListener(listener: CategoryListener){
         listeners.remove(listener)
-    }
+    }*/
 
 
 

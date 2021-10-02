@@ -7,4 +7,9 @@
         <attr name="score" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="UserView">
+        <attr name="imgUser" format="reference"/>
+        <attr name="nameUser" format="string"/>
+    </declare-styleable>
+
 </resources>

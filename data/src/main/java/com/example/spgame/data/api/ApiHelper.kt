@@ -1,23 +1,21 @@
-package com.example.data.api
+package com.example.spgame.data.api
 
-import android.util.Log
-import com.example.data.model.Category
+import com.example.spgame.domain.model.Category
+
 
 class ApiHelper(private val apiService: ApiService) {
-    private final val TAG : String = ApiHelper::class.java.name
-
     fun getUsers() = apiService.getUsers()
 
-    fun getCategories() : List<Category> {
-        val categories = apiService.getCategories() as MutableList<Category>
-        /*categories.apply {
-            add(0,categories[categories.size-1])
-            add(0,categories[categories.size-2])
-            add(categories.size-1,categories[0])
-            add(categories.size-1,categories[1])
-        }*/
-        Log.d(TAG,"Отримана кількість категорій: ${categories.size}")
-        return categories
-
+    fun getCategories(): List<Category> {
+        val categoriesData = apiService.getCategories() as MutableList<com.example.spgame.data.model.Category>
+        val categoriesDomain : MutableList<Category> = mutableListOf()
+        categoriesData.forEach {
+            categoriesDomain.add(Category(
+                id = it.id,
+                name = it.name,
+                image = it.image
+            ))
+        }
+        return categoriesDomain
     }
 }
