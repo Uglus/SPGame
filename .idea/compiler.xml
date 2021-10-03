@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="SPGame.app" target="11" />
+      <module name="SPGame.data" target="11" />
       <module name="SPGame.dataOld" target="11" />
     </bytecodeTargetLevel>
   </component>
